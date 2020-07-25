@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { animated } from 'react-spring';
 
 const toastTypeVariations = {
   info: css`
@@ -19,7 +20,7 @@ interface ContainerProps {
   type?: 'success' | 'error' | 'info';
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled(animated.div)<ContainerProps>`
   display: flex;
   align-items: flex-start;
 
@@ -27,6 +28,11 @@ export const Container = styled.div<ContainerProps>`
   padding: 16px;
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+
+  /* Position was added here to make it works with react-spring animated.
+  The right CSS property participates in specifying the horizontal position of
+  a positioned element. It has no effect on non-positioned elements. */
+  position: relative;
 
   ${props => toastTypeVariations[props.type || 'info']}
 
