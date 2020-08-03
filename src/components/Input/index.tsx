@@ -26,7 +26,7 @@ interface InputProps extends TextInputProps {
 
 const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   { name, icon, ...rest },
-  ref,
+  forwardedRef,
 ) => {
   const inputElementRef = useRef<any>(null);
   const { registerField, defaultValue = '', fieldName, error } = useField(name);
@@ -35,7 +35,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(forwardedRef, () => ({
     focus() {
       inputElementRef.current.focus();
     },
@@ -46,9 +46,13 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
       name: fieldName,
       ref: inputValueRef.current,
       path: 'value',
-      setValue(inputRef: any, value) {
-        inputRef.current.value = value;
+      setValue(_, value) {
+        inputValueRef.current.value = value;
         inputElementRef.current.setNativeProps({ text: value });
+      },
+      clearValue() {
+        inputValueRef.current.value = '';
+        inputElementRef.current.clear();
       },
     });
   }, [fieldName, registerField]);
