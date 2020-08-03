@@ -16,6 +16,7 @@ import logoImg from '../../assets/logo.png';
 import {
   Container,
   Title,
+  Form,
   Icon,
   BackToSignIn,
   BackToSignInText,
@@ -43,11 +44,13 @@ const SignUp: React.FC = () => {
               <Title>Crie sua conta</Title>
             </View>
 
-            <Input name="name" icon="user" placeholder="Nome" />
-            <Input name="email" icon="mail" placeholder="E-mail" />
-            <Input name="password" icon="lock" placeholder="Senha" />
+            <Form>
+              <Input name="name" icon="user" placeholder="Nome" />
+              <Input name="email" icon="mail" placeholder="E-mail" />
+              <Input name="password" icon="lock" placeholder="Senha" />
 
-            <Button onPress={() => {}}>Entrar</Button>
+              <Button onPress={() => {}}>Entrar</Button>
+            </Form>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>

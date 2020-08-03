@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { Platform } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
+import { Form as UnformForm } from '@unform/mobile';
 
 export const Container = styled.View`
   flex: 1;
@@ -17,6 +18,10 @@ export const Title = styled.Text`
   color: #f4ede8;
   font-family: 'RobotoSlab-Medium';
   margin: 64px 0 24px;
+`;
+
+export const Form = styled(UnformForm)`
+  width: 100%;
 `;
 
 export const ForgotPassword = styled.TouchableOpacity`
