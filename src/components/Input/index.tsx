@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({ name, icon, ...rest }) => {
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
 
   useEffect(() => {
-    registerField({
+    registerField<string>({
       name: fieldName,
       ref: inputValueRef.current,
       path: 'value',
