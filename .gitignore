@@ -3,3 +3,6 @@ build/
 tmp/*
 !tmp/.gitkeep
 __tests__/
+
+.env
+ormconfig.json
