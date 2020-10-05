@@ -22,13 +22,11 @@ export default class PasswordController {
   public async update(request: Request, response: Response): Promise<Response> {
     const { password, token } = request.body;
 
-    const resetPassword = container.resolve(
-      ResetPasswordService,
-    );
+    const resetPassword = container.resolve(ResetPasswordService);
 
     await resetPassword.execute({
       token,
-      password
+      password,
     });
 
     return response.status(204).json();
