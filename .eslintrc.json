@@ -40,7 +40,7 @@
       "error",
       {
         "properties": "never",
-        "ignoreDestructuring": "true"
+        "ignoreDestructuring": true
       }
     ],
     "import/prefer-default-export": "off",
