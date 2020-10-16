@@ -36,6 +36,13 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "no-unused-expressions": "off",
+    "camelcase": [
+      "error",
+      {
+        "properties": "never",
+        "ignoreDestructuring": "true"
+      }
+    ],
     "import/prefer-default-export": "off",
     "import/extensions": [
       "error",
