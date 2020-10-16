@@ -132,6 +132,7 @@ export const NextAppointment = styled.div`
 
     strong {
       margin-left: 24px;
+      font-size: 20px;
       color: #fff;
     }
 
@@ -199,7 +200,6 @@ export const Appointment = styled.div`
 
     strong {
       margin-left: 24px;
-      font-size: 20px;
       color: #fff;
     }
   }
