@@ -51,7 +51,7 @@ export interface Provider {
 }
 
 const CreateAppointment: React.FC = () => {
-  const { goBack } = useNavigation();
+  const { goBack, navigate } = useNavigation();
   const { user } = useAuth();
 
   const route = useRoute();
@@ -123,13 +123,15 @@ const CreateAppointment: React.FC = () => {
         provider_id: selectedProvider,
         date,
       });
+
+      navigate('AppointmentCreated', { date: date.getTime() });
     } catch (err) {
       Alert.alert(
         'Erro ao criar aendamento',
         'Ocorreu um erro ao tentar criar o agendamento, tente novamente.',
       );
     }
-  }, [selectedDate, selectedHour, selectedProvider]);
+  }, [navigate, selectedDate, selectedHour, selectedProvider]);
 
   const morningAvailability = useMemo(() => {
     return availability
