@@ -1,0 +1,8 @@
+node_modules/
+build/
+tmp/*
+!tmp/.gitkeep
+__tests__/
+
+.env
+ormconfig.json
