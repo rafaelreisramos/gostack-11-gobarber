@@ -1,5 +1,5 @@
 node_modules/
-build/
+dist/
 tmp/*
 !tmp/.gitkeep
 __tests__/

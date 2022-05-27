@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  postgresql:
+    image: postgres:${POSTGRES_VERSION}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASS}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+
+  mongodb:
+    image: mongo:${MONGODB_VERSION}
+    ports:
+      - ${MONGODB_PORT}:${MONGODB_PORT}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASS}
+    volumes:
+      - mongodb_data:/data/db
+
+  mongo-express:
+    image: mongo-express:${MONGODB_EXPRESS_VERSION}
+    ports:
+      - ${MONGODB_EXPRESS_PORT}:${MONGODB_EXPRESS_PORT}
+    depends_on:
+      - mongodb
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGODB_EXPRESS_USER}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGODB_EXPRESS_PASS}
+      - ME_CONFIG_MONGODB_URL=${MONGODB_URL}
+
+  redis:
+    image: redis:${REDIS_VERSION}
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASS}
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgresql_data:
+    driver: local
+  mongodb_data:
+    driver: local
+  redis_data:
+    driver: local
