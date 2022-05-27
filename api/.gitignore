@@ -5,4 +5,3 @@ tmp/*
 __tests__/
 
 .env
-ormconfig.json

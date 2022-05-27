@@ -1,6 +1,6 @@
-import 'dotenv/config';
+require('dotenv').config();
 
-export = [
+module.exports = [
   {
     name: 'default',
     type: 'postgres',
