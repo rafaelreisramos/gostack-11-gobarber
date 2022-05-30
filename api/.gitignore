@@ -2,6 +2,10 @@ node_modules/
 dist/
 tmp/*
 !tmp/.gitkeep
+!tmp/uploads
+tmp/uploads/*
+!tmp/uploads/.gitkeep
+
 __tests__/
 
 .env
