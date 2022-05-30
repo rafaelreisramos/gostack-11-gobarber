@@ -10,6 +10,7 @@ import { parseISO } from 'date-fns/esm';
 import { useAuth } from '../../hooks/auth';
 
 import logoImg from '../../assets/logo.svg';
+import avatarPlaceholder from '../../assets/avatar-placeholder.png';
 
 import {
   Container,
@@ -143,7 +144,7 @@ const Dashboard: React.FC = () => {
           <img src={logoImg} alt="GoBarber" />
 
           <Profile>
-            <img src={user.avatar_url} alt={user.name} />
+            <img src={user.avatar_url || avatarPlaceholder} alt={user.name} />
 
             <div>
               <span>Bem-vindo</span>

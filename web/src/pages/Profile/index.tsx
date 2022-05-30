@@ -12,6 +12,7 @@ import { useAuth } from '../../hooks/auth';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import avatarPlaceholder from '../../assets/avatar-placeholder.png';
 
 import { Container, Content, AvatarInput } from './styles';
 
@@ -136,7 +137,7 @@ const Profile: React.FC = () => {
 
       <Content>
         <AvatarInput>
-          <img src={user.avatar_url} alt={user.name} />
+          <img src={user.avatar_url || avatarPlaceholder} alt={user.name} />
           <label htmlFor="avatar">
             <FiCamera />
             <input type="file" id="avatar" onChange={handleAvatarChange} />
