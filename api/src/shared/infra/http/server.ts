@@ -6,6 +6,7 @@ import cors from 'cors';
 import { errors as ValidationErrors } from 'celebrate';
 import 'express-async-errors';
 
+import logger from 'utils/logger';
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 import rateLimiter from './middlewares/rateLimiter';
@@ -32,7 +33,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
     });
   }
 
-  console.error(err);
+  logger.error(err);
 
   return response.status(500).json({
     status: 'error',
@@ -41,5 +42,5 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
 });
 
 app.listen(3333, () => {
-  console.info('Server started on port 3333');
+  logger.info('Server started on port 3333');
 });

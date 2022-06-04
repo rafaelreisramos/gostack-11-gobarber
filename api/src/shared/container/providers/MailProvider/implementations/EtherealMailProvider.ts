@@ -2,6 +2,7 @@ import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
 import mailConfig from '@config/mail';
+import logger from 'utils/logger';
 
 import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
 import IMailProvider from '../models/IMailProvider';
@@ -51,8 +52,8 @@ class EtherealMailProvider implements IMailProvider {
       html: await this.mailTemplateProvider.parse(templateData),
     });
 
-    console.log('Message sent: %s', message.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
+    logger.info('Message sent: %s', message.messageId);
+    logger.info('Preview URL: %s', nodemailer.getTestMessageUrl(message));
   }
 }
 
