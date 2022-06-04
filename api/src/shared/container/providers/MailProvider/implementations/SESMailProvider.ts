@@ -1,4 +1,7 @@
 import nodemailer, { Transporter } from 'nodemailer';
+import aws from 'aws-sdk';
+// import * as aws from '@aws-sdk/client-ses';
+
 import { injectable, inject } from 'tsyringe';
 
 import mailConfig from '@config/mail';
@@ -8,26 +11,23 @@ import IMailProvider from '../models/IMailProvider';
 import ISendMailDTO from '../dtos/ISendMailDTO';
 
 @injectable()
-class EtherealMailProvider implements IMailProvider {
+class SESMailProvider implements IMailProvider {
   private client: Transporter;
 
   constructor(
     @inject('MailTemplateProvider')
     private mailTemplateProvider: IMailTemplateProvider,
   ) {
-    nodemailer.createTestAccount().then(account => {
-      const transporter = nodemailer.createTransport({
-        host: account.smtp.host,
-        port: account.smtp.port,
-        secure: account.smtp.secure,
-        auth: {
-          user: account.user,
-          pass: account.pass,
-        },
-      });
-
-      this.client = transporter;
+    const ses = new aws.SES({
+      apiVersion: '2010-12-01',
+      region: 'us-east-1',
     });
+
+    const transporter = nodemailer.createTransport({
+      SES: { ses, aws },
+    });
+
+    this.client = transporter;
   }
 
   public async sendMail({
@@ -38,7 +38,7 @@ class EtherealMailProvider implements IMailProvider {
   }: ISendMailDTO): Promise<void> {
     const { name, email } = mailConfig.defaults.from;
 
-    const message = await this.client.sendMail({
+    await this.client.sendMail({
       from: {
         name: from?.name || name,
         address: from?.email || email,
@@ -47,13 +47,14 @@ class EtherealMailProvider implements IMailProvider {
         name: to.name,
         address: to.email,
       },
+      replyTo: {
+        name: from?.name || name,
+        address: from?.email || email,
+      },
       subject,
       html: await this.mailTemplateProvider.parse(templateData),
     });
-
-    console.log('Message sent: %s', message.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
   }
 }
 
-export default EtherealMailProvider;
+export default SESMailProvider;

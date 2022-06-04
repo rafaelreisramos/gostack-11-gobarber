@@ -1,5 +1,5 @@
 interface IMailConfig {
-  driver: 'ethereal';
+  driver: 'ethereal' | 'ses';
 
   defaults: {
     from: {
@@ -14,8 +14,9 @@ export default {
 
   defaults: {
     from: {
-      email: 'equipe@gobarber.com.br',
-      name: 'Equipe GoBarber',
+      email: process.env.EMAIL_SENDER || 'contato@gobarber.com.br',
+      name: process.env.EMAIL_SENDER_NAME || 'Equipe GoBarber',
+      replyTo: process.env.EMAIL_SENDER || 'contato@gobarber.com.br',
     },
   },
 } as IMailConfig;
