@@ -12,7 +12,6 @@ interface IUploadConfig {
     storage: StorageEngine;
   };
   config: {
-    disk: {};
     aws: {
       bucket: string;
     };
@@ -38,7 +37,6 @@ export default {
   },
 
   config: {
-    disk: {},
     aws: {
       bucket: process.env.STORAGE_BUCKET,
     },
