@@ -14,6 +14,7 @@ class S3StorageProvider implements IStorageProvider {
       region: 'us-east-1',
     });
   }
+
   public async saveFile(file: string): Promise<string> {
     const originalPath = path.resolve(uploadConfig.tmpFolder, file);
 
