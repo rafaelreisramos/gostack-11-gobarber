@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const dir = process.env.NODE_ENV === 'development' ? 'src' : 'dist';
+
 module.exports = [
   {
     name: 'default',
@@ -9,10 +11,10 @@ module.exports = [
     database: process.env.POSTGRES_DB,
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASS,
-    entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
-    migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
+    entities: [`./${dir}/modules/**/infra/typeorm/entities/*{.js,.ts}`],
+    migrations: [`./${dir}/shared/infra/typeorm/migrations/*{.js,.ts}`],
     cli: {
-      migrationsDir: './src/shared/infra/typeorm/migrations',
+      migrationsDir: `./${dir}/shared/infra/typeorm/migrations`,
     },
   },
   {
@@ -22,6 +24,6 @@ module.exports = [
     port: process.env.MONGODB_PORT,
     database: process.env.MONGODB_DB,
     useUnifiedTopology: true,
-    entities: ['./src/modules/**/infra/typeorm/schemas/*.ts'],
+    entities: [`./${dir}/modules/**/infra/typeorm/schemas/*{.js,.ts}`],
   },
 ];
