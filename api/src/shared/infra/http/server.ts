@@ -6,7 +6,7 @@ import cors from 'cors';
 import { errors as ValidationErrors } from 'celebrate';
 import 'express-async-errors';
 
-import logger from 'utils/logger';
+import logger from '@utils/logger';
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 import rateLimiter from './middlewares/rateLimiter';

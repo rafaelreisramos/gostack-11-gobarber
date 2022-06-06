@@ -2,7 +2,7 @@ import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
 import mailConfig from '@config/mail';
-import logger from 'utils/logger';
+import logger from '@utils/logger';
 
 import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
 import IMailProvider from '../models/IMailProvider';
