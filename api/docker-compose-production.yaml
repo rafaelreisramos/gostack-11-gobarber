@@ -5,33 +5,26 @@ services:
     image: ${POSTGRES_DOCKER_IMAGE}
     ports:
       - ${POSTGRES_HOST_PORT}:${POSTGRES_PORT}
+    restart: always
     environment:
       - POSTGRESQL_USERNAME=${POSTGRES_USER}
       - POSTGRESQL_PASSWORD=${POSTGRES_PASS}
       - POSTGRESQL_DATABASE=${POSTGRES_DB}
-    volumes:
-      - postgresql_data:/var/lib/postgresql/data
 
   mongodb:
     image: ${MONGODB_DOCKER_IMAGE}
     ports:
       - ${MONGODB_HOST_PORT}:${MONGODB_PORT}
-    volumes:
-      - mongodb_data:/data/db
+    restart: always
+    environment:
+      - MONGODB_USERNAME=${MONGODB_USER}
+      - MONGODB_PASSWORD=${MONGODB_PASS}
+      - MONGODB_DATABASE=${MONGODB_DB}
 
   redis:
     image: ${REDIS_DOCKER_IMAGE}
     ports:
       - ${REDIS_HOST_PORT}:${REDIS_PORT}
+    restart: always
     environment:
       - REDIS_PASSWORD=${REDIS_PASS}
-    volumes:
-      - redis_data:/data
-
-volumes:
-  postgresql_data:
-    driver: local
-  mongodb_data:
-    driver: local
-  redis_data:
-    driver: local
