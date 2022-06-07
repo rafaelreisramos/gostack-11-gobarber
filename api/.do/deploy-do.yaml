@@ -1,0 +1,12 @@
+name: gobarber-api
+
+services:
+  - name: api
+    environment_slug: go
+    github:
+      repo: rafaelreisramos/gostack-11-gobarber
+      branch: main
+      deploy_on_push: true
+    source_dir: api
+    routes:
+      - path: /api
