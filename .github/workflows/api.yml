@@ -56,7 +56,7 @@ jobs:
             cd ~/apps/api
             yarn
             cp ../gobarber-api.env ~/apps/api/.env
-            cp ../docker-compose-production.yaml ~/apps/docker-compose.yaml
+            cp ../docker-compose-production.yaml ~/apps/api/docker-compose.yaml
 
       - name: Run migrations and start api
         uses: appleboy/ssh-action@master
