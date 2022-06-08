@@ -26,8 +26,6 @@ jobs:
 
       - name: Cache yarn
         uses: c-hive/gha-yarn-cache@v2
-        with:
-          directory: ./api
 
       - name: Install dependencies
         run: yarn
@@ -43,7 +41,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           source: 'api/dist,api/yarn.lock,api/package.json,api/tmp'
-          target: '~/apps/api'
+          target: '~/apps'
 
       - name: Install dependencies on Digital Ocean
         uses: appleboy/ssh-action@master
@@ -55,8 +53,8 @@ jobs:
           script: |
             cd ~/apps/api
             yarn
-            cp ~/apps/gobarber-api.env ~/apps/api/.en
-            cp ~/apps/docker-compose-production.yaml ~/apps/docker-compose-production.yaml
+            cp ../gobarber-api.env ~/apps/api/.env
+            cp ../docker-compose-production.yaml ~/apps/docker-compose.yaml
 
       - name: Run migrations and start api
         uses: appleboy/ssh-action@master
