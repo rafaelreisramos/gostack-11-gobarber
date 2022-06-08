@@ -26,6 +26,8 @@ jobs:
 
       - name: Cache yarn
         uses: c-hive/gha-yarn-cache@v2
+        with:
+          directory: api
 
       - name: Install dependencies
         run: yarn
