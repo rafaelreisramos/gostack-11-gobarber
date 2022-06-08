@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "babel ./ormconfig.js src --extensions '.js,.ts' --out-dir dist --copy-files",
-    "pm2:start": "NODE_ENV=production pm2 start dist/shared/infra/http/server.js --name gobarber-api",
+    "pm2:restart": "NODE_ENV=production pm2 restart dist/shared/infra/http/server.js --name gobarber-api",
     "start": "NODE_ENV=production node dist/shared/infra/http/server.js",
     "migration:run": "./node_modules/typeorm/cli.js migration:run",
     "dev:server": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore node_modules src/shared/infra/http/server.ts",

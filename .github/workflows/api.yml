@@ -68,4 +68,4 @@ jobs:
           script: |
             cd ~/apps/api
             yarn migration:run
-            pm2 restart gobarber-api
+            yarn pm2:restart
