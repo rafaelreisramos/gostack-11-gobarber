@@ -1,14 +1,16 @@
 {
-  "name": "primeiro-projeto-node",
+  "name": "gobarber-api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "babel ./ormconfig.js src --extensions '.js,.ts' --out-dir dist --copy-files",
+    "pm2:start": "NODE_ENV=production pm2 start dist/shared/infra/http/server.js --name gobarber-api",
     "start": "NODE_ENV=production node dist/shared/infra/http/server.js",
+    "migration:run": "./node_modules/typeorm/cli.js migration:run",
     "dev:server": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore node_modules src/shared/infra/http/server.ts",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "test": "jest",
+    "dev:migration:run": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
+    "test": "NODE_ENV=test jest",
     "lint": "npx eslint --max-warnings 0 'src/**/*.{ts, tsx}'"
   },
   "devDependencies": {
