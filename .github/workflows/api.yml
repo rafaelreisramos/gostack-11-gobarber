@@ -42,5 +42,30 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
-          source: './api'
-          target: 'apps/test'
+          source: './dist,yarn.lock,package.json,./tmp'
+          target: '~/apps/api'
+
+      - name: Install dependencies on Digital Ocean
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/apps/api
+            yarn
+            cp ~/apps/gobarber-api.env ~/apps/api/.en
+            cp ~/apps/docker-compose-production.yaml ~/apps/docker-compose-production.yaml
+
+      - name: Run migrations and start api
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/apps/api
+            yarn migration:run
+            pm2 restart gobarber-api
