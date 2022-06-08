@@ -68,4 +68,5 @@ jobs:
           script: |
             cd ~/apps/api
             yarn migration:run
+            cp dist/ormconfig.js .
             yarn pm2:restart
