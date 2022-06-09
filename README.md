@@ -6,8 +6,11 @@
 
 # GoBarber
 
-A aplicação foi publicada aqui no Github como um monorepo isolado, isto é, não existe
-um compartilhamento de código, nem da pasta node_modules.
+Este repositório é resultado do projeto desenvolvido no curso de formação Javascript fullstack GoStack, atual [Ignite](https://www.rocketseat.com.br/ignite) da Rocketseat.
+
+O projeto é composto de 3 aplicações: uma api REST, um web app desenvolvido em React e um aplicativo mobile desenvolvido em React Native.
+
+A aplicação foi publicada aqui no Github como um monorepo isolado, isto é, não existe um compartilhamento de código, nem da pasta node_modules.
 
 <!-- A decisão aqui se dá principalmente por dificuldades adicionais em manter um monorepo
 compartilhado com a aplicação mobile na época em que a aplicação foi desenvolvida (Obs.:
@@ -15,14 +18,11 @@ com o expo na versão 45.0.0 ainda são necessárias configurações adicionais 
 node_modules funcione adequadamente como você pode ver aqui
 [Working with Monorepos](https://docs.expo.dev/guides/monorepos/)). -->
 
-Optou-se por esta configuração para deixar todas as partes (api, web, mobile) da aplicação
-reunidas em um único repositório ainda que com código não compartilhado.
+Optou-se por esta configuração para deixar todas as partes (api, web, mobile) da aplicação reunidas em um único repositório ainda que com código não compartilhado entre as aplicações.
 
-Os deploys da api e web são individualizados.
+Os deploys da api e web (feitos a partir das `github actions`) são individualizados.
 
 Para verificar o funcionamento do projeto clone o repositório
-
-- https
 
 ```bash
 git clone https://github.com/rafaelreisramos/gostack-11-gobarber.git
@@ -30,67 +30,84 @@ git clone https://github.com/rafaelreisramos/gostack-11-gobarber.git
 
 ou
 
-- ssh
-
 ```bash
 git clone git@github.com:rafaelreisramos/gostack-11-gobarber.git
 ```
 
-## GoBarber API
+Entre no diretório do projeto
 
-1 - [Instale o nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```
+cd gostack-11-gobarber
+```
 
-2 - Instale o node na versão 16.x
+A partir deste diretório você tem acesso às 3 aplicações divididas nas pastas api, web e mobile. As instruções a seguir mostram como rodar cada um dos projetos em sua máquina local.
+
+Assumo aqui que você esteja utilizando Linux, WSL ou um MacOs com acesso a um terminal Unix.
+
+Caso não esteja, podem ocorrer alguns erros com variáves de ambiente na execução dos scripts. Para maiores esclarecimentos você pode consultar o site [cross-env](https://github.com/kentcdodds/cross-env#readme), instalar o pacote a aplicar quaisquer modificações que sejam necessárias.
+
+<hr><br>
+
+## GoBarber API (REST api)
+
+### Rodando a aplicação localmente
+
+1. [Instale o nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. Instale o node na versão 16.x
 
 ```bash
 nvm v16.15.0
 ```
 
-3 - [Instale o docker compose](https://docs.docker.com/compose/install/)
-
-4 - [Instale o yarn](https://classic.yarnpkg.com/en/docs/install#debian-stable)
-
-5 - Vá para o diretório api
+3. [Instale o docker compose](https://docs.docker.com/compose/install/)
+4. [Instale o yarn](https://classic.yarnpkg.com/en/docs/install#debian-stable)
+5. Vá para o diretório api
 
 ```bash
 cd api
 ```
 
-6 - Copie o arquivo .env.example para um arquivo .env
+6. Copie o arquivo .env.example para um arquivo .env
 
 ```bash
-api> cp .env.example .env
+cp .env.example .env
 ```
 
-7 - Suba os containers de banco de dados (docker compose ou docker-compose)
+7. Suba os containers de banco de dados (docker compose ou docker-compose)
 
 ```bash
-api> docker compose up -d
+docker compose up -d
 ```
 
-8 - Verifique se os containers estão ativos
+8. Verifique se os containers estão ativos
 
 ```bash
 docker ps -a
 ```
 
-9 - Caso não estejam ativos confira os logs com
+9. Caso não estejam ativos confira os logs substituindo o `container_id` pelo `id` informado no comando anterior.
 
 ```bash
 docker container container_id logs
 ```
 
-10 - Caso esteja tudo correto instale as dependências com
+10. Caso esteja tudo correto instale as dependências com
 
 ```bash
-api> yarn install
+yarn install
 ```
 
-11 - Inicie a aplicação
+11. Inicie a aplicação
 
 ```bash
-api> yarn dev:server
+yarn dev:server
 ```
+
+12. Acesse a aplicação no endereço [http://localhost:3333](http://localhost:3333)
+
+### Deploy
+
+Todo...
 
 <!-- ### Deploy
 
@@ -164,9 +181,11 @@ yarn --version
 Assim o setup de configuração inicial do sistema ...
 
 Agora vamos partir para configurações do proxy reverso com Nginx e certificado SSL
-com a Certbot -->
+com a [Certbot](https://certbot.eff.org/) -->
 
-## Web app com React.JS
+<hr><br>
+
+## GoBarber Web (web app com React.JS)
 
 [Layout do GoBarber no Figma](https://www.figma.com/file/BXCihtXXh9p37lGsENV614/GoBarber?node-id=34%3A1180)
 
@@ -186,7 +205,7 @@ Já os clientes acessam o app mobile para agendar os serviços.
 - [React](https://reactjs.org/) com uso dos [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 - [React Context API](https://reactjs.org/docs/context.html) com hooks personalizados
 - Animações com [react-spring](https://react-spring.io/)
-- Formulários com o [Unform]()
+- Formulários com o [Unform](https://unform-rocketseat.vercel.app/)
 - Validação de campos com [Yup](https://github.com/jquense/yup)
 - Estilos com [styled-Components](https://styled-components.com/)
 - Tratamento de datas com [date-fns](https://date-fns.org/)
@@ -194,7 +213,9 @@ Já os clientes acessam o app mobile para agendar os serviços.
 - Requisições http com [axios](https://axios-http.com/docs/intro)
 - Formatação com [Prettier](https://prettier.io/) e análise estática de código com [eslint](https://eslint.org/)
 
-## React Native mobile app
+<hr><br>
+
+## GoBarber Mobile (mobile app em React Native)
 
 <!--
 ```bash
