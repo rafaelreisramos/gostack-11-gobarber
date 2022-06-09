@@ -46,9 +46,37 @@ Assumo aqui que você esteja utilizando Linux, WSL ou um MacOs com acesso a um t
 
 Caso não esteja, podem ocorrer alguns erros com variáves de ambiente na execução dos scripts. Para maiores esclarecimentos você pode consultar o site [cross-env](https://github.com/kentcdodds/cross-env#readme), instalar o pacote a aplicar quaisquer modificações que sejam necessárias.
 
-<hr><br>
-
 ## GoBarber API (REST api)
+
+Uma API REST com:
+
+- [Node.js](https://nodejs.org/en/)
+- Framework [Express](https://expressjs.com/)
+- Princípios de desenvolvimento SOLID
+- Banco de dados [PostgresSQL](https://www.postgresql.org/) para cadastro de usuários e agendamentos
+- Banco de dados [MongoDB](https://www.mongodb.com/) para armazenamento das notificações e mensagens
+- Banco de dados [redis]() para dados de cache e limitação de requisições
+- Containers [docker](https://www.docker.com/) com [docker compose](https://docs.docker.com/compose/) para desenvolvimento e deploy
+
+### Tecnologias usadas
+
+- [Typescript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- Envio de emails com [AWS SES](https://aws.amazon.com/ses/) e [Nodemailer](https://nodemailer.com/about/)
+- Templates de e-mail com [handlebars](https://handlebarsjs.com/)
+- Upload de arquivos com [AWS S3](https://aws.amazon.com/s3/) e [Multer](https://github.com/expressjs/multer#readme)
+- Integração com [AWS SDK](https://aws.amazon.com/sdk-for-javascript/)
+- Autenticação com [JWT](https://jwt.io/)
+- ORM com [TypeORM](https://typeorm.io/)
+- Logs com [Pino](https://getpino.io/#/) e [pino-pretty](https://github.com/pinojs/pino-pretty)
+- Validação de campos com [Celebrate](https://github.com/arb/celebrate)
+- Injeção de dependências com decorators usando [tsyringe](https://github.com/microsoft/tsyringe)
+- Limitação de requisições à API com [node-rate-limiter-flexible](https://github.com/animir/node-rate-limiter-flexible#readme)
+- Tratamento de datas com [date-fns](https://date-fns.org/)
+- Testes com [jest](https://jestjs.io/)
+- Formatação com [Prettier](https://prettier.io/) e análise estática de código com [eslint](https://eslint.org/)
+- Build do projeto com [Babel](https://babeljs.io/)
+- Execução de projeto Typescript com [ts-node](https://typestrong.org/ts-node/)
 
 ### Rodando a aplicação localmente
 
@@ -183,8 +211,6 @@ Assim o setup de configuração inicial do sistema ...
 Agora vamos partir para configurações do proxy reverso com Nginx e certificado SSL
 com a [Certbot](https://certbot.eff.org/) -->
 
-<hr><br>
-
 ## GoBarber Web (web app com React.JS)
 
 [Layout do GoBarber no Figma](https://www.figma.com/file/BXCihtXXh9p37lGsENV614/GoBarber?node-id=34%3A1180)
@@ -213,9 +239,25 @@ Já os clientes acessam o app mobile para agendar os serviços.
 - Requisições http com [axios](https://axios-http.com/docs/intro)
 - Formatação com [Prettier](https://prettier.io/) e análise estática de código com [eslint](https://eslint.org/)
 
-<hr><br>
-
 ## GoBarber Mobile (mobile app em React Native)
+
+### Tecnologias usadas
+
+- [Typescript](https://www.typescriptlang.org/)
+- [React Native](https://reactnative.dev/)
+- [React Context API](https://reactjs.org/docs/context.html) com hooks personalizados
+- Navegação com [React Navigation](https://reactnavigation.org/)
+- Animações com [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+- Captura de Imagens com a Câmera ou seleção da Galeria com [React Native Image Picker](react-native-image-picker)
+- Armazenamento local com [async-storage](https://github.com/react-native-async-storage/async-storage#readme)
+- Ícones com [Vector Icons](react-native-vector-icons)
+- Formulários com o [Unform](https://unform-rocketseat.vercel.app/)
+- Validação de campos com [Yup](https://github.com/jquense/yup)
+- Estilos com [styled-Components](https://styled-components.com/)
+- Tratamento de datas com [date-fns](https://date-fns.org/)
+- Testes com [jest](https://jestjs.io/) e [testing-library](https://testing-library.com/)
+- Requisições http com [axios](https://axios-http.com/docs/intro)
+- Formatação com [Prettier](https://prettier.io/) e análise estática de código com [eslint](https://eslint.org/)
 
 <!--
 ```bash
